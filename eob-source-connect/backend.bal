@@ -21,7 +21,7 @@ service / on httpListener {
         } 
 
         lock {
-            return fhirResources.cloneReadOnly().toArray();
+            return resourceTable.cloneReadOnly().toArray();
         }
     }
 
@@ -30,7 +30,7 @@ service / on httpListener {
         log:printInfo("[READ] Backend Read operation invoked");
 
         lock {
-            return fhirResources.get(id).jsonResource.cloneReadOnly();
+            return resourceTable.get(id).jsonResource.cloneReadOnly();
         }
     }
 
@@ -60,8 +60,26 @@ service / on httpListener {
         string id = uuid:createType1AsString();
         lock {
 
-            fhirResources.put({id: id, jsonResource: payload.cloneReadOnly()});
+            resourceTable.put({id: id, jsonResource: payload.cloneReadOnly()});
         }
         return "Hello " + "id";
+    }
+
+    resource function get uscore/read/[string id]() returns json {
+
+        log:printInfo("[READ] Backend Read operation invoked");
+
+        lock {
+            return resourceTable.get("uuid3").jsonResource.cloneReadOnly();
+        }
+    }
+
+    resource function get uscore/search() returns json {
+
+        log:printInfo("[READ] Backend search operation invoked");
+
+        lock {
+            return resourceTable.get("uuid3").jsonResource.cloneReadOnly();
+        }
     }
 }
