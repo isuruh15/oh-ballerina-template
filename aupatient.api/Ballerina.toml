@@ -1,0 +1,21 @@
+[package]
+org = "ballerinax"
+name = "aupatient.api"
+version = "0.2.0"
+distribution = "2201.7.0"
+authors = ["Ballerinax"]
+keywords = ["Healthcare", "FHIR", "Patient", "r4", "aubase"]
+template = true
+
+[build-options]
+observabilityIncluded = true
+
+[[dependency]]
+org = "ballerinax"
+name = "healthcare.fhir.r4"
+version = "4.1.0"
+
+[[dependency]]
+org = "ballerinax"
+name = "health.fhir.r4.aubase410"
+version = "1.0.7"
